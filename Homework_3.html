@@ -15,15 +15,13 @@
 
         console.log("Task_1")
 
-        let n = 2;
+        let i = 0;
 
-        nextPrime:
-        for (let i = 2; i <= n, n < 100; i++, n++) {
-            for (let j = 2; j < i; j++) {
-                if (i % j == 0) continue nextPrime;
+        while (i < 100) {
+            if (isPrimeNumber(i)) {
+                console.log(i);
             }
-
-            console.log(i);
+            i++;
         }
 
     </script>
@@ -36,15 +34,50 @@
 
         console.log("Task_2")
 
-        const goods = [["СPU Intel", 15800, 2],
-        ["CPU AMD", 12300, 3],
-        ["Motherboard Asus sct 1200", 11000, 2],
-        ["Motherboard MSI sct AM4", 9500, 3],
-        ["GPU ASUS RTX3070", 60000, 2],
-        ["GPU Gigabyte RTX3070", 60500, 3]]
+        const goods = [
+            {
+                id_product: 1,
+                product_name: "СPU Intel",
+                price: 15800,
+                quantity: 2
+            },
+            {
+                id_product: 2,
+                product_name: "CPU AMD",
+                price: 12300,
+                quantity: 3
+            },
+            {
+                id_product: 3,
+                product_name: "Motherboard Asus sct 1200",
+                price: 11000,
+                quantity: 2
+            },
+            {
+                id_product: 4,
+                product_name: "Motherboard MSI sct AM4",
+                price: 9500,
+                quantity: 3
+            },
+            {
+                id_product: 5,
+                product_name: "GPU ASUS RTX3070",
+                price: 60000,
+                quantity: 2
+            },
+            {
+                id_product: 6,
+                product_name: "GPU Gigabyte RTX3070",
+                price: 60500,
+                quantity: 3
+            }
+        ]
 
+        function countBasketPrice(goods) {
+            return goods.reduce((totalPrice, cartItem) => totalPrice + cartItem.price * cartItem.quantity, 0);
+        }
 
-        console.log(goods)
+        console.log(countBasketPrice(goods));
 
     </script>
 
@@ -55,10 +88,8 @@
 
         console.log("Task_3")
 
-        let i;
-        for (i = 0; i <= 9; i++)
-            console.log(i);
-
+        let n;
+        for (n = 0; n <= 9; console.log(n++)) { }
 
     </script>
 
@@ -69,13 +100,8 @@
 
         console.log("Task_4")
 
-        let arr4 = []
-        let str = 0
-
-        while (str < 20) {
-            ++str;
-            arr4.push("x");
-            console.log(arr4);
+        for (let a = 0, pyramid = 'x'; a < 20; a++, pyramid += 'x') {
+            console.log(pyramid)
         }
 
     </script>
