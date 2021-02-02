@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework_3</title>
+</head>
+
+<body>
+
+    <script>
+
+        //1. С помощью цикла while вывести все простые числа в промежутке от 0 до 100.
+
+        console.log("Task_1")
+
+        let i = 0;
+
+        while (i < 100) {
+            if (isPrimeNumber(i)) {
+                console.log(i);
+            }
+            i++;
+        }
+
+    </script>
+
+    <script>
+
+        // 2. С этого урока начинаем работать с функционалом интернет-магазина. Предположим, есть сущность корзины. Нужно реализовать функционал подсчета стоимости корзины в зависимости от находящихся в ней товаров. Товары в корзине хранятся в массиве. Задачи:
+        // a) Организовать такой массив для хранения товаров в корзине;
+        // b) Организовать функцию countBasketPrice, которая будет считать стоимость корзины.
+
+        console.log("Task_2")
+
+        const goods = [
+            {
+                id_product: 1,
+                product_name: "СPU Intel",
+                price: 15800,
+                quantity: 2
+            },
+            {
+                id_product: 2,
+                product_name: "CPU AMD",
+                price: 12300,
+                quantity: 3
+            },
+            {
+                id_product: 3,
+                product_name: "Motherboard Asus sct 1200",
+                price: 11000,
+                quantity: 2
+            },
+            {
+                id_product: 4,
+                product_name: "Motherboard MSI sct AM4",
+                price: 9500,
+                quantity: 3
+            },
+            {
+                id_product: 5,
+                product_name: "GPU ASUS RTX3070",
+                price: 60000,
+                quantity: 2
+            },
+            {
+                id_product: 6,
+                product_name: "GPU Gigabyte RTX3070",
+                price: 60500,
+                quantity: 3
+            }
+        ]
+
+        function countBasketPrice(goods) {
+            return goods.reduce((totalPrice, cartItem) => totalPrice + cartItem.price * cartItem.quantity, 0);
+        }
+
+        console.log(countBasketPrice(goods));
+
+    </script>
+
+    <script>
+
+        // 3.*Вывести с помощью цикла for числа от 0 до 9, не используя тело цикла. Выглядеть это должно так:
+        // for(…){// здесь пусто}
+
+        console.log("Task_3")
+
+        let n;
+        for (n = 0; n <= 9; console.log(n++)) { }
+
+    </script>
+
+    <script>
+
+        // 4. *Нарисовать пирамиду с помощью console.log, 
+        // как показано на рисунке, только у вашей пирамиды должно быть 20 рядов, а не 5:
+
+        console.log("Task_4")
+
+        for (let a = 0, pyramid = 'x'; a < 20; a++, pyramid += 'x') {
+            console.log(pyramid)
+        }
+
+    </script>
+
+</body>
+
+</html>
