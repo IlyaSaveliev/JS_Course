@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .good {
+            border: 1px solid #000;
+            margin-bottom: 5px;
+            background: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="catalog">
+        <H1>Каталог</H1>
+    </div>
+
+    <div class="cart-list">
+        <H1>Корзина</H1>
+    </div>
+    <button class="cart-btn">Очистить корзину</button>
+
+    <script defer>
+        // 1. Доработать модуль корзины.
+        // a. Добавлять в объект корзины выбранные товары по клику на кнопке «Купить» без перезагрузки страницы
+        // b. Привязать к событию покупки товара пересчет корзины и обновление ее внешнего вида
+
+        console.log("Task_1")
+
+        const catalogItem = {
+            render(good) {
+                return `<div class="good">
+                    <div><b>Наименование</b>: ${good.product_name}</div>
+                    <div><b>Цена за шт.</b>: ${good.price}</div>
+                    <div><b>Количество на складе<b>: ${good.quantity}</div> 
+                    <button class="catalog-btn">Добавить в корзину</button>
+                </div>`;
+            }
+        }
+
+        const catalog = {
+            catalogListBlock: null,
+            catalogButton: null,
+            catalogItem,
+            goods: [
+                {
+                    id_product: 1,
+                    product_name: "СPU Intel",
+                    price: 15800,
+                    quantity: 5
+                },
+                {
+                    id_product: 2,
+                    product_name: "CPU AMD",
+                    price: 12300,
+                    quantity: 6
+                },
+                {
+                    id_product: 3,
+                    product_name: "Motherboard Asus sct 1200",
+                    price: 11000,
+                    quantity: 4
+                },
+                {
+                    id_product: 4,
+                    product_name: "Motherboard MSI sct AM4",
+                    price: 9500,
+                    quantity: 5
+                },
+                {
+                    id_product: 5,
+                    product_name: "GPU ASUS RTX3070",
+                    price: 60000,
+                    quantity: 8
+                },
+                {
+                    id_product: 6,
+                    product_name: "GPU Gigabyte RTX3070",
+                    price: 60500,
+                    quantity: 6
+                },
+            ],
+
+            init() {
+                this.catalogListBlock = document.querySelector('.catalog');
+                this.catalogButton = document.querySelector('.catalog-btn');
+                /*this.catalogButton.addEventListener('click', this.addToCart.bind(this));*/
+
+                this.render();
+            },
+            render() {
+                this.goods.forEach(good => {
+                    this.catalogListBlock.insertAdjacentHTML('beforeend', this.catalogItem.render(good));
+                });
+            },
+            addToCart() {
+
+            },
+        };
+
+        catalog.init();
+
+
+        const cartItem = {
+            render(good) {
+                return `<div class="good">
+                    <div><b>Наименование</b>: ${good.product_name}</div>
+                    <div><b>Цена за шт.</b>: ${good.price}</div>
+                    <div><b>Количество</b>: ${good.quantity = 0}</div>
+                    <div><b>Стоимость</b>: ${good.quantity * good.price}</div>
+                </div>`;
+            }
+        }
+
+        const cart = {
+            cartListBlock: null,
+            cartButton: null,
+            cartItem,
+            goods: [
+                {
+                    id_product: 1,
+                    product_name: "СPU Intel",
+                    price: 15800,
+                },
+                {
+                    id_product: 2,
+                    product_name: "CPU AMD",
+                    price: 12300,
+                },
+                {
+                    id_product: 3,
+                    product_name: "Motherboard Asus sct 1200",
+                    price: 11000,
+                },
+                {
+                    id_product: 4,
+                    product_name: "Motherboard MSI sct AM4",
+                    price: 9500,
+                },
+                {
+                    id_product: 5,
+                    product_name: "GPU ASUS RTX3070",
+                    price: 60000,
+                },
+                {
+                    id_product: 6,
+                    product_name: "GPU Gigabyte RTX3070",
+                    price: 60500,
+                },
+            ],
+
+            init() {
+                this.cartListBlock = document.querySelector('.cart-list');
+                this.cartButton = document.querySelector('.cart-btn');
+                this.cartButton.addEventListener('click', this.clearCart.bind(this));
+
+                this.render();
+            },
+            render() {
+                if (this.goods.length) {
+                    this.goods.forEach(good => {
+                        this.cartListBlock.insertAdjacentHTML('beforeend', this.cartItem.render(good));
+                    });
+                    this.cartListBlock.insertAdjacentHTML('beforeend', `В корзине ${this.goods.length} позиций(а) стоимостью ${this.getCartPrice()}`);
+                } else {
+                    this.cartListBlock.textContent = 'Корзина пуста';
+                }
+            },
+            getCartPrice() {
+                return this.goods.reduce(function (price, good) {
+                    return price + good.price * good.quantity;
+                }, 0);
+            },
+            clearCart() {
+                this.goods = [];
+                this.render();
+            },
+        };
+
+        cart.init();
+
+    </script>
+
+</body>
+
+</html>
