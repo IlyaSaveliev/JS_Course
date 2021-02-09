@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework_4</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 1. Написать функцию, преобразующую число в объект. 
+        // Передавая на вход число от 0 до 999, мы должны получить на выходе объект, 
+        // в котором в соответствующих свойствах описаны единицы, десятки и сотни. 
+        // Например, для числа 245 мы должны получить следующий объект: 
+        // {‘единицы’: 5, ‘десятки’: 4, ‘сотни’: 2}. Если число превышает 999, 
+        // необходимо выдать соответствующее сообщение с помощью console.log и вернуть пустой объект.
+
+        console.log("Task_1")
+
+        function convertNumber(num) {
+            if (num > 999 || num < 0) {
+                console.log("Недопустимое значение!")
+                let obj = {}
+                return obj
+            } else {
+                let result = ["сотни", "десятки", "единицы"]
+                let obj = {}
+                let i = result.length - 1
+                while (i >= 0) {
+                    obj[result[i]] = num % 10
+                    num = (num - num % 10) / 10
+                    i--
+                }
+                return obj
+            }
+
+        }
+
+        console.log(convertNumber(-10));
+        console.log(convertNumber(1000));
+        console.log(convertNumber(245));
+        console.log(convertNumber(45));
+        console.log(convertNumber(5));
+
+    </script>
+
+    <script>
+
+        // .Продолжить работу с интернет-магазином:
+        // 2.1. В прошлом домашнем задании вы реализовали корзину на базе массивов. Какими объектами можно заменить их элементы?
+        // 2.2. Реализуйте такие объекты.
+        // 2.3. Перенести функционал подсчета корзины на объектно-ориентированную базу.
+
+        console.log("Task_2")
+
+        const Basket = {
+            goods: [
+                {
+                    id_product: 1,
+                    product_name: "СPU Intel",
+                    price: 15800,
+                    quantity: 2
+                },
+                {
+                    id_product: 2,
+                    product_name: "CPU AMD",
+                    price: 12300,
+                    quantity: 3
+                },
+                {
+                    id_product: 3,
+                    product_name: "Motherboard Asus sct 1200",
+                    price: 11000,
+                    quantity: 2
+                },
+                {
+                    id_product: 4,
+                    product_name: "Motherboard MSI sct AM4",
+                    price: 9500,
+                    quantity: 3
+                },
+                {
+                    id_product: 5,
+                    product_name: "GPU ASUS RTX3070",
+                    price: 60000,
+                    quantity: 2
+                },
+                {
+                    id_product: 6,
+                    product_name: "GPU Gigabyte RTX3070",
+                    price: 60500,
+                    quantity: 3
+                }
+            ],
+            countBasketPrice() {
+                return this.goods.reduce((totalPrice, cartItem) => totalPrice += cartItem.price * cartItem.quantity, 0);
+            }
+
+        };
+
+        console.log(Basket.countBasketPrice());
+
+    </script>
+
+</body>
+
+</html>
