@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS_Advanced_Homework_1</title>
+    <style>
+        .product_item {
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid #000;
+            margin: 15px;
+            border-radius: 5px;
+            width: 600px;
+            height: 150px;
+            background: #ccc;
+        }
+
+        .product_img {
+            width: 120px;
+            height: 120px;
+            margin: 15px;
+            border: 1px solid #000;
+            background: rgb(255, 255, 255);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div></div>
+    <header>
+        <h1>Products</h1>
+    </header>
+    <main>
+        <div class="products"></div>
+    </main>
+
+    <script>
+
+        'use strict'
+
+        const renderProduct = {
+            render(product_item) {
+                return `<div class="product_item">
+            <div><h3>${product_item.title}</h3>
+            <p>${product_item.price}</p>
+            <button class="by_btn">В корзину</button></div>
+            <div class="product_img"><img src="" alt="IMG"></div>
+        </div>`;
+
+            }
+        }
+
+        const indexCatalog = {
+            productList: null,
+            renderProduct,
+            products: [
+                { id: 1, title: 'СPU Intel', price: 15800 },
+                { id: 2, title: 'CPU AMD', price: 12300 },
+                { id: 3, title: 'Motherboard Asus sct 1200', price: 11000 },
+                { id: 4, title: 'Motherboard MSI sct AM4', price: 9500 },
+                { id: 5, title: 'GPU ASUS RTX3070', price: 60000 },
+                { id: 6, title: 'GPU Gigabyte RTX3070', price: 60500 },
+            ],
+
+            init() {
+                this.productList = document.querySelector('.products');
+                this.render();
+            },
+
+            render() {
+                this.products.forEach(product_item => {
+                    this.productList.insertAdjacentHTML('beforeend', this.renderProduct.render(product_item));
+                });
+            },
+
+        };
+
+        indexCatalog.init()
+
+    </script>
+
+</body>
+
+</html>
